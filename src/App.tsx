@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [money, setMoney] = useState([
+    {banknote: "dollar", nominal: 100, number: "a123456789"},
+    {banknote: "dollar", nominal: 50, number: "b123456789"},
+    {banknote: "ruble", nominal: 100, number: "c123456789"},
+    {banknote: "dollar", nominal: 100, number: "d123456789"},
+    {banknote: "dollar", nominal: 50, number: "e123456789"},
+    {banknote: "ruble", nominal: 100, number: "f123456789"},
+    {banknote: "dollar", nominal: 50, number: "j123456789"},
+    {banknote: "ruble", nominal: 50, number: "h123456789"}
+  ])
+
+  let currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === "ruble")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ul>
+        {currentMoney.map((objFromMoneyArr, index) => {
+          return (
+              <li key={index}>
+                <span>{objFromMoneyArr.banknote}</span>
+                <span>{objFromMoneyArr.nominal}</span>
+                <span>{objFromMoneyArr.number}</span>
+              </li>
+          )
+        })}
+      </ul>
   );
 }
 
